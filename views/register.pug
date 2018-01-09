@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    .container(style='margin-left: 30%;margin-right: 30%;width:40%;text-align: center;')
+        h1 Register Page
+        h3 Just do it!
+        br
+        form(role='form', action="/register",method="post")
+            .form-group
+                input.form-control(style='width:40%;margin-left: 30%;margin-right: 30%', type='text', name="username", placeholder='Enter Username' value=(undefined === user ? '' : user))
+            .form-group
+                input.form-control(style='width:40%;margin-left: 30%;margin-right: 30%', type='password', name="password", placeholder='Password')
+            button.btn.btn-default(type='submit') Submit
+            |#{' '}
+            a(href='/')
+                button.btn.btn-primary(type="button") Cancel

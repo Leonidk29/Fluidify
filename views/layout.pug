@@ -1,0 +1,20 @@
+doctype html
+html
+    head
+        title= title
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', rel='stylesheet', media='screen')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/dashboard.css')
+        script(src='//code.jquery.com/jquery.js')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+        script(src='https://cdn.plot.ly/plotly-latest.min.js')
+    body
+        if (error && error.length > 0)
+            br
+            h4.error-msg(style='margin-left: 30%;margin-right: 30%;width:40%;text-align: center;color:red')= error
+            br
+        include navbar.pug
+        block content
+
+

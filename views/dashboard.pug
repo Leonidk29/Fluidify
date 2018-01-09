@@ -1,0 +1,29 @@
+extends layout.pug
+block content
+    .container-fluid
+        .row
+            .col-sm-3.col-md-2.sidebar
+                ul.nav.nav-sidebar
+                    li(class=(current === 'All') ? 'active' : undefined)
+                        a(href='/dashboard') All
+                ul.nav.nav-sidebar
+                    for point in meteringpoints
+                        li(id=point.id, class=(current === point.id) ? 'active' : undefined)
+                            a(href=point.url) #{point.address}
+            .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+                h1.page-header Dashboard
+                .row.placeholders
+                    .col-xs-6.col-sm-3.placeholder
+                        .container(id="plotly-div" style='text-align: center;')
+
+
+
+    script.
+        xCord = !{JSON.stringify(xCords)};
+        text = !{JSON.stringify(text)};
+        name= !{JSON.stringify(name)};
+        xtitle= !{JSON.stringify(xtitle)};
+        yCord = [#{yCords}]
+    script
+        include ../public/javascripts/charty.js
+
