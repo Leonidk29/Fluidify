@@ -15,7 +15,7 @@ function send(json) {
 }
 
 
-// Create Json witj ramdo, consumption data
+// Create Json with random, consumption data
 function createJSON(items) {
     return {
         readings: items.map(element => {
