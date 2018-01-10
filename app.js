@@ -6,25 +6,15 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const expressSession = require('express-session');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const flash = require('connect-flash');
+const passport = require('./authentication/passport');
 const config = require('./config');
-const plotly = require('plotly')(config.plotly.name, config.plotly.token);
-
-
-//==============================================================================
-
-// Import routes
-const index = require('./routes/index');
-
 
 
 
 //==============================================================================
 
 // Database Settings
-const debug = require('debug')('metering-project:server');
+const debug = require('debug')('Fluidify:');
 const mongoose = require('mongoose');
 const Promise = require('bluebird');
 Promise.promisifyAll(mongoose);
@@ -73,18 +63,15 @@ app.use(expressSession({
         maxAge: 1000 * 60 * 60
     }
 }));
-app.use(passport.initialize());
-app.use(flash());
-app.use(passport.session());
 
-const Account = require('./models/account');
-passport.use(new LocalStrategy(Account.authenticate()));
-passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUser());
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 //==============================================================================
 
+// Import route
+const index = require('./routes/index');
 
 // Use routes
 app.use('/', index);

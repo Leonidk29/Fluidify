@@ -1,4 +1,13 @@
-var LocalStrategy = require('passport-local').Strategy;
-var flash = require('connect-flash');
-var passport = require('passport');
-var expressSession = require('express-session');
+const LocalStrategy = require('passport-local').Strategy;
+const passport = require('passport');
+const Account = require('../models/account');
+
+
+
+passport.use(new LocalStrategy(Account.authenticate()));
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
+
+
+module.exports = passport;
+
